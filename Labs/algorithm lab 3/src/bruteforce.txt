@@ -1,0 +1,83 @@
+convert_to_binary(num):
+    Initialize an empty string binary_str.
+    While num is greater than 0:
+    Append the remainder of num divided by 2 to binary_str.
+    Update num to be the quotient of num divided by 2.
+    Return the reversed binary_str.
+
+Brute-Force Function to Calculate Maximum Profit:
+bruteforce(capacity, length, profit, weights):
+    Initialize max_profit to 0.
+    Calculate total_combinations as 2^length.
+    For each combination i from 0 to total_combinations - 1:
+        Convert i to binary and store in binary_value, padded with zeros to match length.
+        Initialize current_profit and current_weight to 0.
+        For each bit j in binary_value:
+        If binary_value[j] is "1":
+        Add profit[j] to current_profit.
+        Add weights[j] to current_weight.
+    If current_weight is less than or equal to capacity and current_profit is greater than max_profit:
+        Update max_profit to current_profit.
+Return max_profit.
+
+
+
+
+
+
+
+
+
+
+
+
+fractional_knapsack(item_weights, item_profits, max_capacity):
+    Determine the number of items (num_items).
+    Initialize optimal_combination as a list of zeros with length num_items.
+    Initialize max_profit to 0.0.
+    Initialize leftover_capacity to 0.0.
+    Calculate total_combinations as 2^num_items.
+   
+Evaluate Each Combination:
+
+For each combination from 0 to total_combinations - 1:
+    Initialize current_combination as a list of zeros with length num_items.
+    Initialize current_profit to 0.0.
+    Set current_capacity to max_capacity.
+    Set comb_num to the current combination index.
+   
+Determine Items in Current Combination:
+
+For each index in num_items:
+    Determine binary_choice as comb_num modulo 2.
+    Update comb_num to be comb_num divided by 2.
+    If binary_choice is 1 and the item's weight is less than or equal to current_capacity:
+        Update current_combination[index] to 1.
+        Add the item's profit to current_profit.
+        Subtract the item's weight from current_capacity.
+
+Check for Fractional Items:
+If current_capacity is greater than 0:
+    Initialize best_fractional_combination as a copy of current_combination.
+    Initialize best_fractional_profit as current_profit.
+    For each index in num_items:
+        If current_combination[index] is 0:
+        Calculate fraction as the minimum of 1 and current_capacity divided by the item's weight.
+        Calculate potential_profit as current_profit plus fraction multiplied by the item's profit.
+        If potential_profit is greater than best_fractional_profit:
+            Update best_fractional_profit to potential_profit.
+            Update best_fractional_combination as a copy of current_combination.
+            Set best_fractional_combination[index] to fraction.
+    Set current_combination to best_fractional_combination.
+    Set current_profit to best_fractional_profit.
+    Set current_capacity to 0.
+
+Update Optimal Combination:
+
+If current_profit is greater than max_profit:
+    Set optimal_combination to a copy of current_combination.
+    Set max_profit to current_profit.
+    Set leftover_capacity to current_capacity.
+
+Return max_profit
+
